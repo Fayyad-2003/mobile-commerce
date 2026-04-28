@@ -2,6 +2,7 @@ package com.awesomeproject
 
 import android.app.Application
 import com.facebook.react.PackageList
+import com.horcrux.svg.SvgPackage
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
 import com.facebook.react.ReactNativeApplicationEntryPoint.loadReactNative
@@ -14,9 +15,11 @@ class MainApplication : Application(), ReactApplication {
       context = applicationContext,
       packageList =
         PackageList(this).packages.apply {
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // add(MyReactNativePackage())
-        },
+            // Packages that cannot be autolinked yet can be added manually here, for example:
+            // add(MyReactNativePackage())
+            // Ensure react-native-svg is registered if autolinking missed it
+            add(SvgPackage())
+          },
     )
   }
 
