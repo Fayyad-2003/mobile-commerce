@@ -3,7 +3,7 @@ const tintColorDark = '#FFF4CC';
 
 export const APP_COLORS = {
   background: '#fdf4ca',
-  backgroundSoft: '#FFF4CC',
+  backgroundSoft: '#eedfa9',
   surface: '#FFFBEE',
   textPrimary: '#f2a725',
   textSecondary: '#6E5600',

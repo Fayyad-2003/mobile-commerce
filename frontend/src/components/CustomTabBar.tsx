@@ -9,18 +9,18 @@ import Animated, {
   LinearTransition,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import COLORS from '../constants/index';
+import COLORS, { APP_COLORS } from '../constants/index';
 import type { TabNavigatorParamList } from '../types';
 
 const TAB_PALETTE = {
-  container: 'rgba(10, 10, 12, 0.94)',
-  border: 'rgba(255, 255, 255, 0.08)',
+  container: (COLORS && COLORS.dark && COLORS.dark.background) || '#0A0A0C',
+  border: APP_COLORS?.border || 'rgba(255, 255, 255, 0.08)',
   idle: 'rgba(255, 255, 255, 0.04)',
-  selected: 'rgba(245, 158, 11, 0.18)',
-  selectedStrong: 'rgba(245, 158, 11, 0.28)',
-  selectedIcon: '#FFD27A',
+  selected: 'rgba(196, 138, 0, 0.18)',
+  selectedStrong: 'rgba(196, 138, 0, 0.28)',
+  selectedIcon: APP_COLORS?.accent || '#FFD27A',
   idleIcon: 'rgba(255,255,255,0.72)',
-  selectedText: '#FFF4DD',
+  selectedText: APP_COLORS?.backgroundSoft || '#FFF4DD',
 };
 
 const iconMap = {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     // backgroundColor: TAB_PALETTE.idle,
   },
   buttonSelected: {
-    backgroundColor: 'rgba(245, 158, 11, 0.14)',
+    backgroundColor: TAB_PALETTE.selected,
     shadowOpacity: 0.12,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },
