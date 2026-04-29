@@ -1,19 +1,30 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const tintColorLight = '#C48A00';
+const tintColorDark = '#FFF4CC';
+
+export const APP_COLORS = {
+  background: '#fdf4ca',
+  backgroundSoft: '#FFF4CC',
+  surface: '#FFFBEE',
+  textPrimary: '#f2a725',
+  textSecondary: '#6E5600',
+  accent: '#C48A00',
+  accentSoft: '#E8B93A',
+  border: '#D9B44A',
+};
 
 export default {
   light: {
-    text: '#000',
-    background: '#fff',
+    text: APP_COLORS.textPrimary,
+    background: APP_COLORS.background,
     tint: tintColorLight,
-    tabIconDefault: '#ccc',
+    tabIconDefault: APP_COLORS.textSecondary,
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#fff',
-    background: '#000',
+    text: APP_COLORS.backgroundSoft,
+    background: '#231A00',
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
+    tabIconDefault: APP_COLORS.accentSoft,
     tabIconSelected: tintColorDark,
   },
 };
@@ -66,3 +77,26 @@ export {
   VeryLightGrayModeColors,
   MediumLightGrayModeColors,
 };
+
+export const homeTitle = 'Find Your Favorite Fit And Wear It Now';
+
+export const mockProducts = [
+  {
+    id: 0,
+    title: 'Camera',
+    description: 'A New Version of Canon',
+    image: '/images/',
+    price: 33,
+    rating: 3.2,
+  },
+  {
+    id: 1,
+    title: 'Books Shelf',
+    description: 'Modern Book Shelf',
+    image: '/images/',
+    price: 22,
+    rating: 4.3,
+  },
+];
+
+export const mockCategories = ['Clothes', 'Phones', 'Toyes', 'Plants'];
