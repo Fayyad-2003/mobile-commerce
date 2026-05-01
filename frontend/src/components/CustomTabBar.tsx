@@ -13,14 +13,15 @@ import COLORS, { APP_COLORS } from '../constants/index';
 import type { TabNavigatorParamList } from '../types';
 
 const TAB_PALETTE = {
-  container: (COLORS && COLORS.dark && COLORS.dark.background) || '#0A0A0C',
-  border: APP_COLORS?.border || 'rgba(255, 255, 255, 0.08)',
-  idle: 'rgba(255, 255, 255, 0.04)',
-  selected: 'rgba(196, 138, 0, 0.18)',
-  selectedStrong: 'rgba(196, 138, 0, 0.28)',
-  selectedIcon: APP_COLORS?.accent || '#FFD27A',
-  idleIcon: 'rgba(255,255,255,0.72)',
-  selectedText: APP_COLORS?.backgroundSoft || '#FFF4DD',
+  container:
+    (COLORS && COLORS.dark && COLORS.dark.background) || APP_COLORS.background,
+  border: APP_COLORS?.border || 'rgba(224, 224, 224, 0.08)',
+  idle: 'rgba(44, 62, 80, 0.04)',
+  selected: 'rgba(52, 152, 219, 0.18)',
+  selectedStrong: 'rgba(52, 152, 219, 0.28)',
+  selectedIcon: APP_COLORS?.accent || '#3498DB',
+  idleIcon: 'rgba(44, 62, 80, 0.72)',
+  selectedText: APP_COLORS?.backgroundSoft || '#F0F2F4',
 };
 
 const iconMap = {
@@ -198,10 +199,10 @@ const styles = StyleSheet.create({
     minWidth: 20,
     height: 20,
     paddingHorizontal: 5,
-    backgroundColor: '#FF5A5F',
+    backgroundColor: '#FF6B6B',
     borderRadius: 10,
     borderWidth: 1.5,
-    borderColor: '#0A0A0C',
+    borderColor: '#FF5252',
     zIndex: 50,
     alignItems: 'center',
     justifyContent: 'center',

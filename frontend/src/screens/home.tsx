@@ -1,6 +1,9 @@
 import { MotiView } from 'moti';
 import React, { useState } from 'react';
 import {
+  Dimensions,
+  FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -8,8 +11,14 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { APP_COLORS, homeTitle } from '../constants';
+import {
+  APP_COLORS,
+  homeTitle,
+  mockCategories,
+  mockProducts,
+} from '../constants';
 import { Search, X } from 'lucide-react-native';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
   const animatedTitle = [...homeTitle.split(' '), '"'].filter(
@@ -17,58 +26,170 @@ const Home = () => {
   );
 
   const [searchText, setSearchText] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState({
+    index: 0,
+    category: mockCategories[0],
+  });
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.containerTitle}>
-        {animatedTitle.map((item, index) => (
-          <MotiView
-            key={index}
-            from={{ opacity: 0, translateY: 10 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            transition={{
-              type: 'spring',
-              delay: index * 250,
-            }}
-          >
-            <Text style={styles.header}>{item}</Text>
-          </MotiView>
-        ))}
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.containerTitle}>
+          {animatedTitle.map((item, index) => (
+            <MotiView
+              key={index}
+              from={{ opacity: 0, translateY: 10 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{
+                type: 'spring',
+                delay: index * 250,
+              }}
+            >
+              <Text style={styles.header}>{item}</Text>
+            </MotiView>
+          ))}
+        </View>
 
-      <MotiView
-        style={styles.inputContainer}
-        from={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          type: 'spring',
-          damping: 20,
-          stiffness: 50,
-          delay: 300,
-        }}
-      >
-        <Search
-          color={
-            searchText.length > 0
-              ? APP_COLORS.accentSoft
-              : APP_COLORS.textSecondary
-          }
-          size={18}
-          style={styles.searchIcon}
-        />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Find Your Product"
-          value={searchText}
-          onChangeText={text => setSearchText(text)}
-          placeholderTextColor={APP_COLORS.textSecondary}
+        <MotiView
+          style={styles.inputContainer}
+          from={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: 'spring',
+            damping: 20,
+            stiffness: 50,
+            delay: 300,
+          }}
+        >
+          <Search
+            color={
+              searchText.length > 0
+                ? APP_COLORS.accentSoft
+                : APP_COLORS.textSecondary
+            }
+            size={18}
+            style={styles.searchIcon}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Find Your Product"
+            value={searchText}
+            onChangeText={text => setSearchText(text)}
+            placeholderTextColor={APP_COLORS.textSecondary}
+          />
+
+          {searchText.length > 0 && (
+            <TouchableOpacity onPress={() => setSearchText('')}>
+              <X
+                color={APP_COLORS.accent}
+                size={16}
+                style={styles.searchIcon}
+              />
+            </TouchableOpacity>
+          )}
+        </MotiView>
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoriesContainer}
+          data={mockCategories}
+          keyExtractor={(item, idx) => `${item}-${idx}`}
+          renderItem={({ item, index }) => (
+            <MotiView
+              key={`${item}-${index}`}
+              from={{ opacity: 0, translateY: 8 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ delay: index * 80 }}
+              style={styles.categoryAnimated}
+            >
+              <TouchableOpacity
+                style={styles.categoryButton}
+                onPress={() =>
+                  setSelectedCategory({ index: index, category: item })
+                }
+              >
+                <Text
+                  style={[
+                    styles.categoryText,
+                    {
+                      color:
+                        selectedCategory.index === index
+                          ? APP_COLORS.textPrimary
+                          : APP_COLORS.textSecondary,
+                    },
+                  ]}
+                >
+                  {item}
+                </Text>
+                {selectedCategory.category === item && (
+                  <MotiView
+                    style={styles.activeCircle}
+                    from={{
+                      opacity: 0,
+                      translateX: -10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      translateX: 0,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      damping: 30,
+                      stiffness: 350,
+                      // delay: 1,
+                    }}
+                  />
+                )}
+              </TouchableOpacity>
+            </MotiView>
+          )}
         />
 
-        {searchText.length > 0 && (
-          <TouchableOpacity onPress={() => setSearchText('')}>
-            <X color={APP_COLORS.accent} size={16} style={styles.searchIcon} />
-          </TouchableOpacity>
-        )}
-      </MotiView>
+        <FlatList
+          scrollEnabled={false}
+          style={styles.productsContainer}
+          contentContainerStyle={{ gap: 15, paddingBottom: 40 }}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          data={mockProducts}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.title}
+          numColumns={2}
+          ListEmptyComponent={() => (
+            <MotiView
+              from={{ opacity: 0, translateY: 15 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              style={styles.emptyListContainer}
+            >
+              <Text>No Products Available</Text>
+            </MotiView>
+          )}
+          renderItem={({ index, item }) => (
+            <TouchableOpacity>
+              <MotiView
+                from={{ opacity: 0, translateY: 15 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{
+                  type: 'spring',
+                  damping: 12,
+                  stiffness: 30,
+                  delay: index * 100,
+                }}
+              >
+                <ProductCard
+                  title={item.title}
+                  rating={item.rating}
+                  brand={item.brand}
+                  image={item.image}
+                  id={item.id}
+                  prices={item.prices}
+                  descirption={item.description}
+                  onPress={() => {}}
+                />
+              </MotiView>
+            </TouchableOpacity>
+          )}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -112,16 +233,54 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: APP_COLORS.backgroundSoft,
-    borderRadius: 10,
-    marginHorizontal: 20,
+    borderRadius: 15,
+    marginHorizontal: 10,
     marginTop: 12,
     paddingHorizontal: 12,
     height: 52,
-    borderWidth: 1,
+    borderWidth: 0.3,
     borderColor: APP_COLORS.border,
+    marginBottom: 20,
   },
   searchIcon: {
     marginHorizontal: 8,
     alignSelf: 'center',
+  },
+  categoriesContainer: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  categoryAnimated: {
+    marginRight: 12,
+  },
+  categoryButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    backgroundColor: APP_COLORS.backgroundSoft,
+    borderRadius: 50,
+    // borderWidth: 1,
+    borderColor: APP_COLORS.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  categoryText: {
+    color: APP_COLORS.accent,
+    fontWeight: '600',
+    fontSize: 14,
+  },
+  activeCircle: {
+    height: 3,
+    width: 40,
+    borderRadius: 50,
+    backgroundColor: APP_COLORS.textPrimary,
+  },
+  productsContainer: {
+    display: 'flex',
+  },
+  emptyListContainer: {
+    width: Dimensions.get('window').width - 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 80,
   },
 });
