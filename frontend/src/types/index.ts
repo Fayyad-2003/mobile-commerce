@@ -14,6 +14,7 @@ export type ProductCardType = {
   image?: string;
   brand: string;
   descirption: string;
+  category: string;
   rating: number | string;
   prices:
     | {

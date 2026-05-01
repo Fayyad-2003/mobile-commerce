@@ -85,6 +85,7 @@ export const mockProducts = [
     id: 0,
     title: 'Mirrorless Camera',
     brand: 'Sony',
+    category: 'tech',
     description: 'Compact 4K camera for travel and daily shooting.',
     image:
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop',
@@ -96,6 +97,7 @@ export const mockProducts = [
     id: 1,
     title: 'Modern Bookshelf',
     brand: 'IKEA',
+    category: 'furniture',
     description: 'Minimal oak shelf with five spacious tiers.',
     image:
       'https://images.unsplash.com/photo-1594620302200-9a762244a156?q=80&w=1000&auto=format&fit=crop',
@@ -107,6 +109,8 @@ export const mockProducts = [
     id: 2,
     title: 'Wireless Headphones',
     brand: 'Bose',
+    category: 'tech',
+
     description: 'Over-ear noise cancelling headphones.',
     image:
       'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop',
@@ -118,6 +122,8 @@ export const mockProducts = [
     id: 3,
     title: 'Smart Watch',
     brand: 'Garmin',
+    category: 'tech',
+
     description: 'Fitness and sleep tracking with AMOLED display.',
     image:
       'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=1000&auto=format&fit=crop',
@@ -129,6 +135,8 @@ export const mockProducts = [
     id: 4,
     title: 'Leather Backpack',
     brand: 'Herschel',
+    category: 'clothing',
+
     description: 'Premium backpack with laptop sleeve.',
     image:
       'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000&auto=format&fit=crop',
@@ -140,6 +148,8 @@ export const mockProducts = [
     id: 5,
     title: 'Desk Lamp',
     brand: 'BenQ',
+    category: 'tech',
+
     description: 'Dimmable LED lamp with warm light mode.',
     image:
       'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1000&auto=format&fit=crop',
@@ -151,6 +161,8 @@ export const mockProducts = [
     id: 6,
     title: 'Running Shoes',
     brand: 'Nike',
+    category: 'shoes',
+
     description: 'Lightweight daily trainers with soft cushioning.',
     image:
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop',
@@ -162,6 +174,8 @@ export const mockProducts = [
     id: 7,
     title: 'Ceramic Mug Set',
     brand: 'Mud & Co',
+    category: 'furniture',
+
     description: 'Set of 4 handmade matte ceramic mugs.',
     image:
       'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=1000&auto=format&fit=crop',
@@ -173,6 +187,8 @@ export const mockProducts = [
     id: 8,
     title: 'Bluetooth Speaker',
     brand: 'JBL',
+    category: 'tech',
+
     description: 'Portable speaker with deep bass and 12h battery.',
     image:
       'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1000&auto=format&fit=crop',
@@ -184,6 +200,8 @@ export const mockProducts = [
     id: 9,
     title: 'Indoor Plant Pot',
     brand: 'Stone & Co',
+    category: 'furniture',
+
     description: 'Concrete planter for modern home decor.',
     image:
       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1000&auto=format&fit=crop',
@@ -193,4 +211,4 @@ export const mockProducts = [
   },
 ];
 
-export const mockCategories = ['Clothes', 'Phones', 'Toyes', 'Plants'];
+export const mockCategories = ['clothing', 'tech', 'furniturs', 'Plants'];

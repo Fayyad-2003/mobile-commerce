@@ -1,5 +1,5 @@
 import { MotiView } from 'moti';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   FlatList,
@@ -30,6 +30,28 @@ const Home = () => {
     index: 0,
     category: mockCategories[0],
   });
+
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setStep(1), 200), // title starts
+      setTimeout(() => setStep(2), 900), // search appears (200 + 250*3 words approx)
+      setTimeout(() => setStep(3), 1300), // categories appear
+      setTimeout(() => setStep(4), 1800), // products appear
+    ];
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const allCategories = selectedCategory.category === 'all';
+  const filteredProductsWithCategory = mockProducts.filter(p =>
+    allCategories ? p : p.category === selectedCategory.category,
+  );
+
+  const filteredWithSearch = filteredProductsWithCategory.filter(p =>
+    p.title.toLowerCase().includes(searchText.toLocaleLowerCase()),
+  );
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -52,12 +74,12 @@ const Home = () => {
         <MotiView
           style={styles.inputContainer}
           from={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: step >= 2 ? 1 : 0, scale: step >= 2 ? 1 : 0.5 }}
           transition={{
             type: 'spring',
             damping: 20,
             stiffness: 50,
-            delay: 300,
+            delay: 100,
           }}
         >
           <Search
@@ -98,8 +120,11 @@ const Home = () => {
             <MotiView
               key={`${item}-${index}`}
               from={{ opacity: 0, translateY: 8 }}
-              animate={{ opacity: 1, translateY: 0 }}
-              transition={{ delay: index * 80 }}
+              animate={{
+                opacity: step >= 3 ? 1 : 0,
+                translateY: step >= 3 ? 0 : 10,
+              }}
+              transition={{ delay: index * 20 }}
               style={styles.categoryAnimated}
             >
               <TouchableOpacity
@@ -150,14 +175,20 @@ const Home = () => {
           style={styles.productsContainer}
           contentContainerStyle={{ gap: 15, paddingBottom: 40 }}
           columnWrapperStyle={{ justifyContent: 'space-between' }}
-          data={mockProducts}
+          data={filteredProductsWithCategory}
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.title}
           numColumns={2}
           ListEmptyComponent={() => (
             <MotiView
-              from={{ opacity: 0, translateY: 15 }}
-              animate={{ opacity: 1, translateY: 0 }}
+              from={{
+                opacity: 0,
+                translateY: 15,
+              }}
+              animate={{
+                opacity: step >= 4 ? 1 : 0,
+                translateY: step >= 4 ? 0 : 15,
+              }}
               style={styles.emptyListContainer}
             >
               <Text>No Products Available</Text>
@@ -167,7 +198,10 @@ const Home = () => {
             <TouchableOpacity>
               <MotiView
                 from={{ opacity: 0, translateY: 15 }}
-                animate={{ opacity: 1, translateY: 0 }}
+                animate={{
+                  opacity: step >= 4 ? 1 : 0,
+                  translateY: step >= 4 ? 0 : 15,
+                }}
                 transition={{
                   type: 'spring',
                   damping: 12,
@@ -176,6 +210,7 @@ const Home = () => {
                 }}
               >
                 <ProductCard
+                  category={item.category}
                   title={item.title}
                   rating={item.rating}
                   brand={item.brand}
