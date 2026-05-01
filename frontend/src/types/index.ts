@@ -12,7 +12,7 @@ export type TabNavigatorParamList = {
 export type ProductCardType = {
   id?: number;
   title: string;
-  image?: string;
+  images?: string[];
   brand: string;
   descirption: string;
   category: string;

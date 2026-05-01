@@ -1,4 +1,4 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { RootStackParamList } from '../types';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,6 +13,7 @@ import {
 import { APP_COLORS, mockProducts } from '../constants';
 import ImageSlider from '../components/image-slider';
 import { ArrowLeft } from 'lucide-react-native';
+import { MotiView } from 'moti';
 
 type ProductDetailsScreenProp = RouteProp<RootStackParamList, 'ProductDetails'>;
 const ProductDetails = () => {
@@ -21,21 +22,22 @@ const ProductDetails = () => {
   } = useRoute<ProductDetailsScreenProp>();
 
   const product = mockProducts.filter(p => p.id === +id)[0];
-  console.log(product);
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.scrollView}
       >
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
           <ArrowLeft color={APP_COLORS.textPrimary} size={18} />
         </TouchableOpacity>
-        <View>
-          <Text style={{ color: APP_COLORS.textPrimary }}>{product.title}</Text>
-        </View>
+        <ImageSlider imageList={product.images || []} />
 
-        <ImageSlider></ImageSlider>
+        <MotiView style={styles.ratingCointainer}></MotiView>
       </ScrollView>
     </SafeAreaView>
   );
@@ -52,5 +54,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     minHeight: Dimensions.get('window').height,
+  },
+  backButton: {
+    marginTop: 10,
+    position: 'absolute',
+    padding: 12,
+    zIndex: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: APP_COLORS.accentSoft,
+    borderColor: APP_COLORS.textPrimary,
+    borderWidth: 2,
+    borderRadius: 50,
+    top: 0,
+    left: 15,
+  },
+  ratingCointainer: {
+    marginHorizontal: 12,
   },
 });

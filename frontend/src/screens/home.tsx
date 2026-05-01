@@ -223,17 +223,17 @@ const Home = () => {
                   delay: index * 100,
                 }}
               >
-                <ProductCard
-                  category={item.category}
-                  title={item.title}
-                  rating={item.rating}
-                  brand={item.brand}
-                  image={item.image}
-                  id={item.id}
-                  prices={item.prices}
-                  descirption={item.description}
-                  onPress={() => {}}
-                />
+<ProductCard
+                   category={item.category}
+                   title={item.title}
+                   rating={item.rating}
+                   brand={item.brand}
+                   images={item.images}
+                   id={item.id}
+                   prices={item.prices}
+                   descirption={item.description}
+                   onPress={() => {}}
+                 />
               </MotiView>
             </TouchableOpacity>
           )}

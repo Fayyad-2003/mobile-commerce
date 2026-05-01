@@ -22,7 +22,7 @@ const CARD_WIDTH = (width - 40 - 15) / 2;
 const ProductCard: React.FC<ProductCardType> = ({
   id,
   title,
-  image,
+  images = [],
   brand,
   descirption,
   prices,
@@ -40,13 +40,16 @@ const ProductCard: React.FC<ProductCardType> = ({
       opacity: opacity.value,
     };
   });
+
+  const coverImage = images[0] || 'https://via.placeholder.com/300';
+
   return (
     <LinearGradient
       colors={[APP_COLORS.backgroundSoft, APP_COLORS.backgroundSoft]}
       style={styles.linearGradient}
     >
       <ImageBackground
-        source={{ uri: image }}
+        source={{ uri: coverImage }}
         style={styles.cardImage}
         resizeMode="cover"
       >

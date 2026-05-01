@@ -87,8 +87,11 @@ export const mockProducts = [
     brand: 'Sony',
     category: 'tech',
     description: 'Compact 4K camera for travel and daily shooting.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1502920514313-52581002a659?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1581591527829-c5dc9a1e2c5f?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 1099 }],
     rating: 4.6,
     currency: '$',
@@ -99,8 +102,11 @@ export const mockProducts = [
     brand: 'IKEA',
     category: 'furniture',
     description: 'Minimal oak shelf with five spacious tiers.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1594620302200-9a762244a156?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1586953208448-b3590ff9dc3a?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 249 }],
     rating: 4.3,
     currency: '$',
@@ -112,8 +118,11 @@ export const mockProducts = [
     category: 'tech',
 
     description: 'Over-ear noise cancelling headphones.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1546435520-84dbc9b26c58?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1583394840529-43ea7216f5a1?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 199 }],
     rating: 4.5,
     currency: '$',
@@ -125,8 +134,11 @@ export const mockProducts = [
     category: 'tech',
 
     description: 'Fitness and sleep tracking with AMOLED display.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544117761-7e66b6bfc5c7?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 249 }],
     rating: 4.2,
     currency: '$',
@@ -138,8 +150,11 @@ export const mockProducts = [
     category: 'clothing',
 
     description: 'Premium backpack with laptop sleeve.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-155306240ab-9b126f2a5b0b?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1571782623460-9d73d2b6e639?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 159 }],
     rating: 4.4,
     currency: '$',
@@ -151,8 +166,11 @@ export const mockProducts = [
     category: 'tech',
 
     description: 'Dimmable LED lamp with warm light mode.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1566150905458-1bf1fc11390d?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1534447670778-4a0ad3c1c2e2?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 69 }],
     rating: 4.1,
     currency: '$',
@@ -164,8 +182,11 @@ export const mockProducts = [
     category: 'shoes',
 
     description: 'Lightweight daily trainers with soft cushioning.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1528701804431-22f1ffa8e0b3?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1579338908822-3e8e2a9a9a2f?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 119 }],
     rating: 4.7,
     currency: '$',
@@ -177,8 +198,11 @@ export const mockProducts = [
     category: 'furniture',
 
     description: 'Set of 4 handmade matte ceramic mugs.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1517848568508-3cdddde1c932?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1567459344292-2b44d1d1d7c2?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 39 }],
     rating: 4.0,
     currency: '$',
@@ -190,8 +214,11 @@ export const mockProducts = [
     category: 'tech',
 
     description: 'Portable speaker with deep bass and 12h battery.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544093324-4fc58e5bfe07?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1572235252267-6949f3f27c91?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 99 }],
     rating: 4.4,
     currency: '$',
@@ -203,8 +230,11 @@ export const mockProducts = [
     category: 'furniture',
 
     description: 'Concrete planter for modern home decor.',
-    image:
+    images: [
       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1463320753956-715e5ed8c3a7?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?q=80&w=1000&auto=format&fit=crop',
+    ],
     prices: [{ size: 'Standard', price: 29 }],
     rating: 4.2,
     currency: '$',
