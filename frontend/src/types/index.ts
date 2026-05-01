@@ -1,5 +1,6 @@
 export type RootStackParamList = {
   MainTabs: undefined;
+  ProductDetails: { id: string };
 };
 
 export type TabNavigatorParamList = {

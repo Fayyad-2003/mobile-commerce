@@ -19,8 +19,16 @@ import {
 } from '../constants';
 import { Search, X } from 'lucide-react-native';
 import ProductCard from '../components/ProductCard';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+type HomeScreenProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'MainTabs'
+>;
 const Home = () => {
+  const navigation = useNavigation<HomeScreenProps>();
   const animatedTitle = [...homeTitle.split(' '), '"'].filter(
     word => word !== '"',
   );
@@ -195,7 +203,13 @@ const Home = () => {
             </MotiView>
           )}
           renderItem={({ index, item }) => (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('ProductDetails', {
+                  id: String(item.id),
+                })
+              }
+            >
               <MotiView
                 from={{ opacity: 0, translateY: 15 }}
                 animate={{
