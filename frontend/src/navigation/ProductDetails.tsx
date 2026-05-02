@@ -11,10 +11,11 @@ import {
   View,
 } from 'react-native';
 import { APP_COLORS, mockProducts } from '../constants';
-import ImageSlider from '../components/image-slider';
+import ImageSlider from '../components/ImageSlider';
 import { ArrowLeft, Star } from 'lucide-react-native';
 import { MotiText, MotiView } from 'moti';
 import { MotiPressable } from 'moti/interactions';
+import PaymentBox from '../components/PaymentBox';
 
 type ProductDetailsScreenProp = RouteProp<RootStackParamList, 'ProductDetails'>;
 const ProductDetails = () => {
@@ -30,29 +31,49 @@ const ProductDetails = () => {
   );
 
   const [selectedPrice, setSelectedPrice] = useState(product.prices[0]);
+  const [contentAnimated, setContentAnimated] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.scrollView}
       >
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
+        <MotiView
+          from={{ opacity: 0, translateY: -20 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{ type: 'timing', duration: 600, delay: 50 }}
         >
-          <ArrowLeft color={APP_COLORS.textPrimary} size={18} />
-        </TouchableOpacity>
-        <ImageSlider imageList={product.images || []} />
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <ArrowLeft color={APP_COLORS.textPrimary} size={18} />
+          </TouchableOpacity>
+        </MotiView>
 
-        <MotiView style={styles.ratingCointainer}>
-          <View style={styles.ratingBox}>
-            <Star
-              color={APP_COLORS.accent}
-              fill={APP_COLORS.accent}
-              size={20}
-            />
+        <MotiView
+          from={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'timing', duration: 700, delay: 150 }}
+        >
+          <ImageSlider imageList={product.images || []} />
+        </MotiView>
 
-            <Text style={styles.rating}>{product.rating}</Text>
+        <MotiView
+          from={{ opacity: 0, translateX: -30 }}
+          animate={{ opacity: 1, translateX: 0 }}
+          transition={{ type: 'timing', duration: 600, delay: 300 }}
+        >
+          <View style={styles.ratingCointainer}>
+            <View style={styles.ratingBox}>
+              <Star
+                color={APP_COLORS.accent}
+                fill={APP_COLORS.accent}
+                size={20}
+              />
+
+              <Text style={styles.rating}>{product.rating}</Text>
+            </View>
           </View>
         </MotiView>
 
@@ -60,11 +81,12 @@ const ProductDetails = () => {
           {animatedTitle.map((item, index) => (
             <MotiView
               key={index}
-              from={{ opacity: 0, translateY: 10 }}
+              from={{ opacity: 0, translateY: 15 }}
               animate={{ opacity: 1, translateY: 0 }}
               transition={{
-                type: 'spring',
-                delay: index * 250,
+                type: 'timing',
+                duration: 550,
+                delay: 450 + index * 80,
               }}
             >
               <Text style={styles.header}>{item}</Text>
@@ -72,32 +94,91 @@ const ProductDetails = () => {
           ))}
         </View>
 
-        <View style={styles.descriptionCotianer}>
-          <MotiText style={styles.descriptionLabel}>Description</MotiText>
-          <MotiText style={styles.description}>{product.description}</MotiText>
-        </View>
+        <MotiView
+          from={{ opacity: 0, translateY: 15 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{
+            type: 'timing',
+            duration: 600,
+            delay: 700 + animatedTitle.length * 80,
+          }}
+        >
+          <View style={styles.descriptionCotianer}>
+            <MotiText style={styles.descriptionLabel}>Description</MotiText>
+            <MotiText style={styles.description}>
+              {product.description}
+            </MotiText>
+          </View>
+        </MotiView>
 
-        <View style={styles.pricesContainer}>
-          {product.prices.map((p, i) => (
-            <MotiPressable
-              key={i}
-              style={[
-                styles.sizeBox,
-                {
-                  backgroundColor:
-                    p.size === selectedPrice.size
-                      ? APP_COLORS.accentSoft
-                      : APP_COLORS.backgroundSoft,
-                },
-              ]}
-              onPress={() => {
-                setSelectedPrice(p);
-              }}
-            >
-              <Text style={styles.sizeTextBox}>{p.size}</Text>
-            </MotiPressable>
-          ))}
-        </View>
+        <MotiView
+          from={{ opacity: 0, translateY: 15 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{
+            type: 'timing',
+            duration: 600,
+            delay: 900 + animatedTitle.length * 80,
+          }}
+        >
+          <View style={styles.pricesContainer}>
+            {product.prices.map((p, i) => (
+              <MotiPressable
+                key={i}
+                from={{ opacity: 0, scale: 0.85, translateY: 10 }}
+                animate={{ opacity: 1, scale: 1, translateY: 0 }}
+                transition={{
+                  type: 'timing',
+                  duration: 550,
+                  delay: 950 + animatedTitle.length * 80 + i * 80,
+                }}
+                style={[
+                  styles.sizeBox,
+                  {
+                    backgroundColor:
+                      p.size === selectedPrice.size
+                        ? APP_COLORS.accentSoft
+                        : APP_COLORS.backgroundSoft,
+                  },
+                ]}
+                onPress={() => {
+                  setSelectedPrice(p);
+                }}
+              >
+                <Text
+                  style={[
+                    styles.sizeTextBox,
+                    {
+                      color:
+                        p.size === selectedPrice.size
+                          ? APP_COLORS.accent
+                          : APP_COLORS.textPrimary,
+                    },
+                  ]}
+                >
+                  {p.size}
+                </Text>
+              </MotiPressable>
+            ))}
+          </View>
+        </MotiView>
+
+        <MotiView
+          from={{ opacity: 0, translateY: 30 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{
+            type: 'timing',
+            duration: 600,
+            delay:
+              1100 + animatedTitle.length * 80 + product.prices.length * 80,
+          }}
+        >
+          <PaymentBox
+            price={selectedPrice.price}
+            buttonTitle="ADD To Cart"
+            onPress={() => {}}
+            loading={false}
+          />
+        </MotiView>
       </ScrollView>
     </SafeAreaView>
   );
